@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>Forum:Sign in</title>
+    <style>
+      body{
+        background: #000;
+        text: "white";
+      }
+      .block{
+        padding: 10px;
+        background: #60a839;
+        border-radius: 10px;
+      }
+      .parent{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        align-content: center; 
+        justify-content: center; 
+        overflow: auto;   
+      }
+      .formName{
+        padding: 0px;
+        margin-top: 0px;
+        text-align: center;
+        font-size: 20;
+      }
+      .fields{
+        width: 100%;
+        margin: 0px;
+        padding: 3px;
+      }
+      .button{
+        border: none;
+        color: white;
+        width: 100%;
+        padding: 6px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius:5px;
+      }
+      .button1{
+        background-color: #605000;
+        margin: 1px 1px;
+      }
+      .button2{
+        background-color: #603000;
+        margin-top: 0px;
+
+      }
+      .pbutton{
+        margin-bottom: 2px;
+        pudding: 0px;
+        margin-top: 2px;
+      }
+      .pfield{
+        margin-bottom: 0px;
+        margin-bottom: 10px;
+      }
+      .signForm{
+        margin: 0px;
+        padding: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="block">
+      <form class="signForm" name="authForm" method="post">
+        <p class="formName"><b>Sign in</b></p>
+        <p class="pfield">
+        <input type="text" class="fields" name="sinick" autocomplete="on" required="required" placeholder="Nickname" pattern="^[A-Za-z]+\w{2,25}">
+        </p>
+        <p class="pfield">
+        <input type="password" class="fields" name="sipass" required="required" placeholder="password" pattern="\w{5,26}">
+        </p>
+        <p class="pbutton">
+          <input type="submit" class="button button1" value="GO GO GO">
+        </p>
+        
+      </form>
+      <p class="pbutton">
+          <input type="button1" class="button button2" value="Registrate">
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
