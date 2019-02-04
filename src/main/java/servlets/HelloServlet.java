@@ -23,9 +23,7 @@ public class HelloServlet extends HttpServlet {
                     "<html lang='en'>" +
                     "<body>" +
                     "<h1>" +
-                    "&lt;h1&gt; " +
                     "Hello Servlet!" +
-                    "&lt;/h1&gt;" +
                     "</h1>" +
                     "</body>" +
                     "</html>");
