@@ -4,6 +4,76 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <!--Test login jsp page-->
+    <!--pages/htmlpart/loginForm.html jsp_fold/loginSuccess.jsp -->
+    <!--Start-->
+    <welcome-file-list>
+        <welcome-file>pages/htmlpart/loginForm.html</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:mysql://localhost/mysql_db</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUser</param-name>
+        <param-value>mysql_user</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUserPwd</param-name>
+        <param-value>mysql_pwd</param-value>
+    </context-param>
+    <!--Test login jsp page-->
+    <!--Finish-->
+
+    <!--Test filters-->
+    <!--START-->
+    <filter>
+        <filter-name>RequestLoggingFilter</filter-name>
+        <filter-class>filters.RequestLoggingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>RequestLoggingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>AthenticationFilter</filter-name>
+        <filter-class>filters.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--Test filters-->
+    <!--FINISH-->
+
+    <context-param>
+        <param-name>DBUSER</param-name>
+        <param-value>Goi</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DBPWD</param-name>
+        <param-value>goipass</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DBURL</param-name>
+        <param-value></param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>listener.AppServletContextAttributeListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>listener.AppServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>listener.MyHttpSessionListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>listener.MyServletRequestListener</listener-class>
+    </listener>
+    
     <servlet>
         <servlet-name>initjsp</servlet-name>
         <jsp-file>/jsp_fold/helloJsp.jsp</jsp-file>
@@ -12,4 +82,12 @@
         <servlet-name>initjsp</servlet-name>
         <url-pattern>/hello-jsp</url-pattern>
     </servlet-mapping>
+    <!--<servlet>-->
+        <!--<servlet-name>successLogin</servlet-name>-->
+        <!--<jsp-file>/jsp_fold/loginSuccess.jsp</jsp-file>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>successLogin</servlet-name>-->
+        <!--<url-pattern>/loginSuccess</url-pattern>-->
+    <!--</servlet-mapping>-->
 </web-app>
