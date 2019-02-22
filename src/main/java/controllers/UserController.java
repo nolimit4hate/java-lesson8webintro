@@ -21,24 +21,20 @@ public class UserController extends HttpServlet {
         System.out.println("#Users# start work");
         dispatcher = req.getRequestDispatcher("/pages/user/user.jsp");
         String userName = getUserNameFromPathInfo(req, resp);
-        DAOUser allUsers = (DAOUser) getServletContext().getAttribute("allusers");
+        DAOUser allUsers = (DAOUser) getServletContext().getAttribute(AttributeName.ALL_USERS);
         try {
             UserBean user = allUsers.getUserByNick(userName);
-            req.setAttribute("userToShow", user);
-            System.out.println(user.getName() + "~" +
-                    user.getEmail() + "~" +
-                    user.getPassword());
+            req.setAttribute(AttributeName.SHOW_USER, user);
             dispatcher.forward(req, resp);
         } catch (DAOSystemException | DAONoSuchEntityException e) {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
-        //        finally {getServletContext().setAttribute("allusers", allUsers);}
     }
 
     private String getUserNameFromPathInfo(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String userName = req.getPathInfo();
-        if(req.getPathInfo() == null || req.getPathInfo().isEmpty() || req.getPathInfo().length() < 3){
-            resp.sendRedirect(req.getContextPath() + "/user/" + req.getSession().getAttribute("user"));
+        if(CheckObjects.isStringsNullOrEmpty(userName) || req.getPathInfo().length() < 3){
+            resp.sendRedirect(req.getContextPath() + "/user/" + req.getSession().getAttribute(AttributeName.USER));
             return "";
         } else {
             // deleting first char '/'

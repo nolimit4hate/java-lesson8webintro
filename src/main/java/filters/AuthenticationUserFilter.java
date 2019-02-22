@@ -1,5 +1,7 @@
 package filters;
 
+import controllers.AttributeName;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +15,7 @@ import java.io.IOException;
  */
 
 @WebFilter(filterName = "userFilter",
-        urlPatterns = {"/user/*", "/operations/logout"},
+        urlPatterns = {"/user/*", "/operations/logout", "/userslist"},
         dispatcherTypes = {DispatcherType.REQUEST})
 public class AuthenticationUserFilter implements Filter {
 
@@ -22,7 +24,7 @@ public class AuthenticationUserFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        if (session.getAttribute("user") == null) {
+        if (session.getAttribute(AttributeName.USER) == null) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN);
         } else {
             chain.doFilter(request, response);

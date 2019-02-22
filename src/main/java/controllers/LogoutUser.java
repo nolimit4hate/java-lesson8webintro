@@ -14,7 +14,7 @@ public class LogoutUser extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         if(cookies != null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("JSESSIONID")){
+                if(cookie.getName().equals(AttributeName.JSESSIONID)){
                     cookie.setMaxAge(0);
                     resp.addCookie(cookie);
                     break;
@@ -24,7 +24,7 @@ public class LogoutUser extends HttpServlet {
 
         //invalidate the session if exists
         HttpSession session = req.getSession(false);
-        System.out.println("#Logout# User="+session.getAttribute("user"));
+        System.out.println("#Logout# User="+session.getAttribute(AttributeName.USER));
         if(session != null){
             session.invalidate();
         }

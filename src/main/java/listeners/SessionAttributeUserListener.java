@@ -1,12 +1,14 @@
 package listeners;
 
+import controllers.AttributeName;
+
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
 /**
- * this listener just for getting info about changing session attributes: 'user', 'userrole'.
+ * this listener just for getting info about changing session attributes: 'user', 'userRole'.
  */
 
 @WebListener
@@ -17,8 +19,8 @@ public class SessionAttributeUserListener implements HttpSessionAttributeListene
         HttpSession session = event.getSession();
         session.getId();
         System.out.println("#SessionAddAttr# id={" + session.getId() +
-                "}\n#Session# user={" + session.getAttribute("user") +
-                "}\n#Session# role={" + session.getAttribute("userrole") + "}");
+                "}\n#Session# user={" + session.getAttribute(AttributeName.USER) +
+                "}\n#Session# role={" + session.getAttribute(AttributeName.USER_ROLE) + "}");
     }
 
     @Override
@@ -31,8 +33,8 @@ public class SessionAttributeUserListener implements HttpSessionAttributeListene
         HttpSession session = event.getSession();
         session.getId();
         System.out.println("#SessionReplaceAttr# id={" + session.getId() +
-                "}\n#Session# user={" + session.getAttribute("user") +
-                "}\n#Session# role={" + session.getAttribute("userrole") + "}");
+                "}\n#Session# user={" + session.getAttribute(AttributeName.USER) +
+                "}\n#Session# role={" + session.getAttribute(AttributeName.USER_ROLE) + "}");
     }
 
 

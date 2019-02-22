@@ -21,14 +21,13 @@ public class UsersListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         dispatcher = req.getRequestDispatcher("/pages/user/usersList.jsp");
-        DAOUser allUsers = (DAOUser) getServletContext().getAttribute("allusers");
+        DAOUser allUsers = (DAOUser) getServletContext().getAttribute(AttributeName.ALL_USERS);
         try {
             List<UserBean> usersList = allUsers.getAllUsers();
-            req.setAttribute("usersList", usersList);
+            req.setAttribute(AttributeName.USERS_LIST, usersList);
             dispatcher.forward(req, resp);
         } catch (DAOSystemException | DAONoSuchEntityException e) {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
-        //        finally {getServletContext().setAttribute("allusers", allUsers);}
     }
 }

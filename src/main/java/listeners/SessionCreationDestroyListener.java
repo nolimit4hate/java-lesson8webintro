@@ -1,5 +1,6 @@
 package listeners;
 
+import controllers.AttributeName;
 import model.UserRolePool;
 
 import javax.servlet.annotation.WebListener;
@@ -17,7 +18,7 @@ public class SessionCreationDestroyListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         HttpSession session = se.getSession();
-        session.setAttribute("userrole", UserRolePool.UNKNOWN);
+        session.setAttribute(AttributeName.USER_ROLE, UserRolePool.UNKNOWN);
         System.out.println("#SessionWasCreated#id={" + session.getId() + "}" + "\n" +
                 "#SessionIsCreated#set role={" + UserRolePool.UNKNOWN + "}");
     }

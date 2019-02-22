@@ -1,5 +1,7 @@
 package filters;
 
+import controllers.AttributeName;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,7 @@ public class AuthenticationStrangerFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        if(session.getAttribute("user") == null){
+        if(session.getAttribute(AttributeName.USER) == null){
             chain.doFilter(request, response);
         } else {
             resp.sendRedirect(req.getContextPath());

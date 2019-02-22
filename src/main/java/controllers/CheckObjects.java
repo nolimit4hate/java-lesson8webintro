@@ -1,6 +1,6 @@
 package controllers;
 
-public class HeplfullClass {
+public class CheckObjects {
 
     public static  <T> boolean isOneOfObjectsIsNull(T... objects){
         for(T obj : objects){

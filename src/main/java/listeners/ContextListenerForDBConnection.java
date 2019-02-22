@@ -1,6 +1,7 @@
 package listeners;
 
-import dao.JDBC.DBConnectionManager;
+import controllers.AttributeName;
+import dao.jdbc.DBConnectionManager;
 import dao.user.DAOUser;
 import dao.user.impl.AllUsersTemp;
 
@@ -31,8 +32,8 @@ public class ContextListenerForDBConnection implements ServletContextListener {
             DBConnectionManager connectionManager = new DBConnectionManager(
                     dbURL, dbUserName, dbUserPassword, dbDriverName);
             DAOUser allUsers = new AllUsersTemp(connectionManager.getConnection());
-            context.setAttribute("allusers", allUsers);
-            System.out.println("#contextListener# Connected to DB. Set 'allusers' attribute to context");
+            context.setAttribute(AttributeName.ALL_USERS, allUsers);
+            System.out.println("#contextListener# Connected to DB. Set 'allUsers' attribute to context");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -42,7 +43,7 @@ public class ContextListenerForDBConnection implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        DAOUser allUsers = (DAOUser) sce.getServletContext().getAttribute("allusers");
+        DAOUser allUsers = (DAOUser) sce.getServletContext().getAttribute(AttributeName.ALL_USERS);
         allUsers.closeDBConnection();
         System.out.println("#contextListener# Database lost connection");
     }

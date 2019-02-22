@@ -16,62 +16,54 @@ import java.util.Enumeration;
 public class LoginUser extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private RequestDispatcher dispatcher;
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        getLoginRequestDispatcher(req);
-        HttpSession session = req.getSession();
-
-        String registredUser = (String) req.getSession().getAttribute("userIsRegistred");
-        if(registredUser != null && !registredUser.isEmpty()){
-            req.setAttribute("userWasRegistred", registredUser);
-            session.removeAttribute("userWasRegistred");
-            dispatcher.forward(req, resp);
-        }
-
-        String userName = req.getParameter("username");
-        String userPassword = req.getParameter("password");
-        if(userName == null || userPassword == null || userName.isEmpty() || userPassword.isEmpty()){
-            req.setAttribute("fields", "empty");
-            dispatcher.forward(req, resp);
-        }
-        DAOUser allUsers = (DAOUser) getServletContext().getAttribute("allusers");
-        try {
-            allUsers.isUserExistByNickPass(userName, userPassword);
-            session.setAttribute("user", userName);
-            session.setAttribute("userrole", UserRolePool.USER);
-            session.setAttribute("userip", req.getRemoteAddr());
-
-            Cookie loginCookie = new Cookie("user", userName);
-            loginCookie.setMaxAge(30*60);
-            resp.addCookie(loginCookie);
-
-            resp.sendRedirect(req.getContextPath());
-        } catch (DAOSystemException | DAONoSuchEntityException e) {
-            req.setAttribute("nouser", "nouser");
-            dispatcher.forward(req, resp);
-        }
-//        finally {getServletContext().setAttribute("allusers", allUsers);}
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getLoginRequestDispatcher(req);
-        dispatcher.forward(req, resp);
-    }
+    private HttpSession session;
 
     private void getLoginRequestDispatcher(HttpServletRequest req){
         dispatcher = req.getRequestDispatcher("/pages/operations/login.jsp");
     }
 
-    private void printContextAttr(){
-        Enumeration<String> attributeNames = getServletContext().getAttributeNames();
-        System.out.println("#Context Attributes");
-        for(; attributeNames.hasMoreElements();){
-            String currentName = attributeNames.nextElement();
-            System.out.println("# name=" + currentName + "\n# value=" +
-                    getServletContext().getAttribute(currentName));
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        getLoginRequestDispatcher(req);
+        session = req.getSession();
+
+        String userName = req.getParameter(AttributeName.POST_USER_NAME);
+        String userPassword = req.getParameter(AttributeName.POST_USER_PASSWORD);
+
+        if(CheckObjects.isStringsNullOrEmpty(userName, userPassword)){
+            req.setAttribute(AttributeName.EMPTY_FIELDS, "empty");
+            dispatcher.forward(req, resp);
         }
+        DAOUser allUsers = (DAOUser) getServletContext().getAttribute(AttributeName.ALL_USERS);
+        try {
+            allUsers.isUserExistByNickPass(userName, userPassword);
+
+            session.setAttribute(AttributeName.USER, userName);
+            session.setAttribute(AttributeName.USER_ROLE, UserRolePool.USER);
+            session.setAttribute(AttributeName.USER_IP, req.getRemoteAddr());
+
+            Cookie loginCookie = new Cookie(AttributeName.USER, userName);
+            loginCookie.setMaxAge(30*60);
+            resp.addCookie(loginCookie);
+
+            resp.sendRedirect(req.getContextPath());
+        } catch (DAOSystemException | DAONoSuchEntityException e) {
+            req.setAttribute(AttributeName.NO_USER, AttributeName.NO_USER);
+            dispatcher.forward(req, resp);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        getLoginRequestDispatcher(req);
+        session = req.getSession();
+        String registredUser = (String) session.getAttribute(AttributeName.NAME_REGISTRED);
+        if(!CheckObjects.isStringsNullOrEmpty(registredUser)){
+            req.setAttribute(AttributeName.NAME_REGISTRED, registredUser);
+            session.removeAttribute(AttributeName.NAME_REGISTRED);
+            dispatcher.forward(req, resp);
+        }
+        dispatcher.forward(req, resp);
     }
 }

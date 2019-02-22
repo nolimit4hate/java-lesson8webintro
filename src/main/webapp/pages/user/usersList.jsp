@@ -1,8 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="controllers.AttributeName" %>
 
 <html>
 <head>
+    <c:set scope="page" var="usersList" value="${AttributeName.USERS_LIST}"></c:set>
     <title>All users</title>
     <style>
         .sub{
@@ -12,7 +14,7 @@
 </head>
 <body>
     <ul>
-        <c:forEach items="${requestScope.usersList}"  var="users">
+        <c:forEach items="${requestScope.get(pageScope.usersList)}"  var="users">
             <li style="color: firebrick">name: <b>${users.name}</b>
             <ul>
                 <li class="sub">role: ${users.userRolePool}</li>
