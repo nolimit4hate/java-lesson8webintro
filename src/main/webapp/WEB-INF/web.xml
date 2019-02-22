@@ -3,91 +3,148 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
-    <!--Test login jsp page-->
-    <!--pages/htmlpart/loginForm.html jsp_fold/loginSuccess.jsp -->
-    <!--Start-->
+<!-- Home page-->
     <welcome-file-list>
-        <welcome-file>pages/htmlpart/loginForm.html</welcome-file>
+        <welcome-file>/pages/home/home.jsp</welcome-file>
     </welcome-file-list>
+<!-- Home page-->
 
-    <context-param>
-        <param-name>dbUrl</param-name>
-        <param-value>jdbc:mysql://localhost/mysql_db</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbUser</param-name>
-        <param-value>mysql_user</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbUserPwd</param-name>
-        <param-value>mysql_pwd</param-value>
-    </context-param>
-    <!--Test login jsp page-->
-    <!--Finish-->
-
-    <!--Test filters-->
-    <!--START-->
-    <filter>
-        <filter-name>RequestLoggingFilter</filter-name>
-        <filter-class>filters.RequestLoggingFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>RequestLoggingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>
-    <filter>
-        <filter-name>AthenticationFilter</filter-name>
-        <filter-class>filters.AuthenticationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <!--Test filters-->
-    <!--FINISH-->
-
-    <context-param>
-        <param-name>DBUSER</param-name>
-        <param-value>Goi</param-value>
-    </context-param>
-    <context-param>
-        <param-name>DBPWD</param-name>
-        <param-value>goipass</param-value>
-    </context-param>
-    <context-param>
-        <param-name>DBURL</param-name>
-        <param-value></param-value>
-    </context-param>
-
-    <listener>
-        <listener-class>listener.AppServletContextAttributeListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>listener.AppServletContextListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>listener.MyHttpSessionListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>listener.MyServletRequestListener</listener-class>
-    </listener>
-    
+<!-- UserController servlet -->
     <servlet>
-        <servlet-name>initjsp</servlet-name>
-        <jsp-file>/jsp_fold/helloJsp.jsp</jsp-file>
+        <servlet-name>userShow</servlet-name>
+        <servlet-class>controllers.UserController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>initjsp</servlet-name>
-        <url-pattern>/hello-jsp</url-pattern>
+        <servlet-name>userShow</servlet-name>
+        <url-pattern>/user/*</url-pattern>
     </servlet-mapping>
-    <!--<servlet>-->
-        <!--<servlet-name>successLogin</servlet-name>-->
-        <!--<jsp-file>/jsp_fold/loginSuccess.jsp</jsp-file>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>successLogin</servlet-name>-->
-        <!--<url-pattern>/loginSuccess</url-pattern>-->
-    <!--</servlet-mapping>-->
+<!-- UserController servlet -->
+
+<!-- JDBC connection data -->
+    <context-param>
+        <param-name>dbUser</param-name>
+        <param-value>admin</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>admin</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbURL</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/lesson8db</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbDriverName</param-name>
+        <param-value>org.postgresql.Driver</param-value>
+    </context-param>
+<!-- JDBC connection data -->
+
+    
+<!-- Error pages -->
+    <!-- Registration -->
+    <servlet>
+        <servlet-name>errorPageLogin</servlet-name>
+        <jsp-file>/pages/error/error-registration.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errorPageLogin</servlet-name>
+        <url-pattern>/error/registration</url-pattern>
+    </servlet-mapping>
+    <!-- 404 -->
+    <servlet>
+        <servlet-name>error404</servlet-name>
+        <jsp-file>/pages/error/error-404.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>error404</servlet-name>
+        <url-pattern>/error/404</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404</location>
+    </error-page>
+    <!-- 403 -->
+    <servlet>
+        <servlet-name>error403</servlet-name>
+        <jsp-file>/pages/error/error-403.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>error403</servlet-name>
+        <url-pattern>/error/403</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/403</location>
+    </error-page>
+    <!-- other errors -->
+    <servlet>
+        <servlet-name>errorOther</servlet-name>
+        <jsp-file>/pages/error/error-other.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>errorOther</servlet-name>
+        <url-pattern>/error/other</url-pattern>
+    </servlet-mapping>
+<!-- Error pages   -->
+
+<!-- Security ROLES-->
+<!--    <security-role>-->
+<!--        <description>user</description>-->
+<!--        <role-name>user</role-name>-->
+<!--    </security-role>-->
+<!--    <security-role>-->
+<!--        <description>admin</description>-->
+<!--        <role-name>admin</role-name>-->
+<!--    </security-role>-->
+<!--    <security-role>-->
+<!--        <description>unknown</description>-->
+<!--        <role-name>unknown</role-name>-->
+<!--    </security-role>-->
+<!-- Security ROLES-->
+
+<!-- Security -->
+    <!-- UsersProfile, Forum only for authorized -->
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>UrlForUsers</web-resource-name>-->
+<!--            <url-pattern>/user/*</url-pattern>-->
+<!--            <url-pattern>/forum/*</url-pattern>-->
+<!--            <url-pattern>/operations/logout</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>user</role-name>-->
+<!--            <role-name>admin</role-name>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
+<!--    &lt;!&ndash; All web pages in path /pages/* &ndash;&gt;-->
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>WebPages</web-resource-name>-->
+<!--            <url-pattern>/pages/*</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>admin</role-name>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
+<!-- Security-->
+
+<!-- Login config -->
+<!--    <login-config>-->
+<!--        <auth-method>FORM</auth-method>-->
+<!--        <realm-name>loginPage</realm-name>-->
+<!--        <form-login-config>-->
+<!--            <form-login-page>/operations/login</form-login-page>-->
+<!--            <form-error-page>/error/registration</form-error-page>-->
+<!--        </form-login-config>-->
+<!--    </login-config>-->
+<!--    <login-config>-->
+<!--        <auth-method>FORM</auth-method>-->
+<!--        <realm-name>registrationPage</realm-name>-->
+<!--        <form-login-config>-->
+<!--            <form-login-page>/operations/registration</form-login-page>-->
+<!--            <form-error-page>/error/registration</form-error-page>-->
+<!--        </form-login-config>-->
+<!--    </login-config>-->
+<!-- Login config -->
+
 </web-app>
