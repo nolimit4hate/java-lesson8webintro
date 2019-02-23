@@ -1,6 +1,6 @@
 package listeners;
 
-import controllers.AttributeName;
+import controllers.ConstAttributeNames;
 
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
@@ -19,8 +19,8 @@ public class SessionAttributeUserListener implements HttpSessionAttributeListene
         HttpSession session = event.getSession();
         session.getId();
         System.out.println("#SessionAddAttr# id={" + session.getId() +
-                "}\n#Session# user={" + session.getAttribute(AttributeName.USER) +
-                "}\n#Session# role={" + session.getAttribute(AttributeName.USER_ROLE) + "}");
+                "}\n#Session# user={" + session.getAttribute(ConstAttributeNames.USER) +
+                "}\n#Session# role={" + session.getAttribute(ConstAttributeNames.USER_ROLE) + "}");
     }
 
     @Override
@@ -33,8 +33,8 @@ public class SessionAttributeUserListener implements HttpSessionAttributeListene
         HttpSession session = event.getSession();
         session.getId();
         System.out.println("#SessionReplaceAttr# id={" + session.getId() +
-                "}\n#Session# user={" + session.getAttribute(AttributeName.USER) +
-                "}\n#Session# role={" + session.getAttribute(AttributeName.USER_ROLE) + "}");
+                "}\n#Session# user={" + session.getAttribute(ConstAttributeNames.USER) +
+                "}\n#Session# role={" + session.getAttribute(ConstAttributeNames.USER_ROLE) + "}");
     }
 
 

@@ -1,7 +1,7 @@
 package dao.exceptions;
 
 /**
- *      some basic exception
+ *      DAOException is replace SQLException
  */
 
 public class DAOException extends Exception{

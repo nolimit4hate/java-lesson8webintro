@@ -1,20 +1,19 @@
 package dao.user;
 
-import dao.exceptions.DAONoSuchEntityException;
-import dao.exceptions.DAOSystemException;
-import dao.exceptions.DAOEntryAlreadyExistsException;
+import dao.exceptions.DAOException;
 import model.UserBean;
-
-import java.sql.Connection;
 import java.util.List;
 
+/**
+ *      This interface help us to divide DAO logic from business logic
+ */
+
 public interface DAOUser {
-
-    List<UserBean> getAllUsers() throws DAOSystemException, DAONoSuchEntityException;
-    UserBean getUserByNick(String name) throws DAOSystemException, DAONoSuchEntityException;
-    void isUserExistByNickPass(String name, String password) throws DAOSystemException, DAONoSuchEntityException;
-    void addUser(UserBean user) throws DAOSystemException, DAOEntryAlreadyExistsException;
-
-
+    // querying
+    List<UserBean> getAllUsers() throws DAOException;
+    UserBean getUserByNick(String name) throws DAOException;
+    void isUserExistByNickPass(String name, String password) throws DAOException;
+    void addUser(String userName, String userPassword, String userEmail) throws DAOException;
+    // close DB connection
     void closeDBConnection();
 }

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="controllers.AttributeName" %>
+<%@ page import="controllers.ConstAttributeNames" %>
 
 <html>
 <head>
@@ -20,7 +20,7 @@
                 <li class="sub">role: ${users.userRolePool}</li>
                 <li class="sub">fio: ${users.fio}</li>
                 <li class="sub">country: ${users.country}</li>
-                <li class="sub">creation date: ${users.crdate}</li>
+                <li class="sub">creation date: ${users.crDate}</li>
                 <li class="sub">password: ${users.password}</li>
             </ul>
             </li>

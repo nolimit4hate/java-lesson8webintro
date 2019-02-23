@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="controllers.AttributeName" %>
+<%@ page import="controllers.ConstAttributeNames" %>
 
 <html>
 <head>
@@ -19,7 +19,7 @@
             <p>role is  <b>${requestScope.get(pageScope.showUser).userRolePool}</b></p>
             <p>FIO      <b>${requestScope.get(pageScope.showUser).fio}</b></p>
             <p>country  <b>${requestScope.get(pageScope.showUser).country}</b></p>
-            <p>crdate   <b>${requestScope.get(pageScope.showUser).crdate}</b></p>
+            <p>crDate   <b>${requestScope.get(pageScope.showUser).crDate}</b></p>
         </div>
     </div>
 </body>

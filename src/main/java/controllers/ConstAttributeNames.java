@@ -1,6 +1,10 @@
 package controllers;
 
-public class AttributeName {
+/**
+ *      this class contains names of attributes that will be used in this application
+ */
+
+public class ConstAttributeNames {
     // request attribute name
     public final static String NAME_REGISTRED = "userWasRegistered";
     public final static String EMPTY_FIELDS = "fields";
@@ -15,7 +19,7 @@ public class AttributeName {
     public final static String USERS_LIST = "usersList";
     //cookie
     public final static String JSESSIONID = "JSESSIONID";
-    //put fields
+    // put fields
     public final static String POST_USER_NAME = "username";
     public final static String POST_USER_PASSWORD = "password";
     public final static String POST_USER_EMAIL = "email";

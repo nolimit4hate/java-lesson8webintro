@@ -13,7 +13,7 @@ public class UserBean implements Serializable {
     private String password;
     private String fio;
     private CountryPool country;
-    private String crdate;
+    private String crDate;
 
     public UserBean() {
     }
@@ -66,12 +66,12 @@ public class UserBean implements Serializable {
         this.country = country;
     }
 
-    public String getCrdate() {
-        return crdate;
+    public String getCrDate() {
+        return crDate;
     }
 
-    public void setCrdate(String crdate) {
-        this.crdate = crdate;
+    public void setCrDate(String crDate) {
+        this.crDate = crDate;
     }
 
     public UserRolePool getUserRolePool() { return userRolePool; }
@@ -88,7 +88,7 @@ public class UserBean implements Serializable {
                 ", password='" + password + '\'' +
                 ", fio='" + fio + '\'' +
                 ", country=" + country +
-                ", crdate='" + crdate + '\'' +
+                ", crDate='" + crDate + '\'' +
                 '}';
     }
 }

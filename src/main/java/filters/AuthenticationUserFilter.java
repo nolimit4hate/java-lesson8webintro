@@ -1,6 +1,6 @@
 package filters;
 
-import controllers.AttributeName;
+import controllers.ConstAttributeNames;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -24,7 +24,7 @@ public class AuthenticationUserFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        if (session.getAttribute(AttributeName.USER) == null) {
+        if (session.getAttribute(ConstAttributeNames.USER) == null) {
             resp.sendError(HttpServletResponse.SC_FORBIDDEN);
         } else {
             chain.doFilter(request, response);
