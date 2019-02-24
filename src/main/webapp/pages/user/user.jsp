@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <c:set scope="page" var="showUser" value="${AttributeName.SHOW_USER}"></c:set>
+    <c:set scope="page" var="showUser" value="${ConstAttributeNames.SHOW_USER}"></c:set>
     <title>Title</title>
     <style>
         b{color: navy;}

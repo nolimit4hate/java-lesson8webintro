@@ -119,8 +119,8 @@ public class UserImplementation implements DAOUser {
             pStatement = connection.prepareStatement(queryString);
             // set string or integer values for prepare statement
             for (int i = 0; i < values.length; i++) {
-                if (isInteger(values[i])) {
-                    pStatement.setInt(i + 1, Integer.parseInt(values[i]));
+                if (isInteger(values[0])) {
+                    pStatement.setInt(i + 1, Integer.parseInt(values[0]));
                 } else {
                     pStatement.setString(i + 1, values[i]);
                 }

@@ -4,10 +4,10 @@
 
 <html>
 <head>
-    <c:set scope="page" var="noUser" value="${AttributeName.NO_USER}"></c:set>
-    <c:set scope="page" var="registred" value="${AttributeName.NAME_REGISTRED}"></c:set>
-    <c:set scope="page" var="userName" value="${AttributeName.POST_USER_NAME}"></c:set>
-    <c:set scope="page" var="userPassword" value="${AttributeName.POST_USER_PASSWORD}"></c:set>
+    <c:set scope="page" var="noUser" value="${ConstAttributeNames.NO_USER}"></c:set>
+    <c:set scope="page" var="registred" value="${ConstAttributeNames.NAME_REGISTRED}"></c:set>
+    <c:set scope="page" var="userName" value="${ConstAttributeNames.POST_USER_NAME}"></c:set>
+    <c:set scope="page" var="userPassword" value="${ConstAttributeNames.POST_USER_PASSWORD}"></c:set>
     <title>login</title>
     <style type="text/css">
         <jsp:include page="/pages/css/base.css"></jsp:include>

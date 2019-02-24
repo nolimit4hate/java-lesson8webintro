@@ -47,6 +47,7 @@ public class LoginUser extends HttpServlet {
         resp.setContentType("text/html");
         getLoginRequestDispatcher(req);
         session = req.getSession();
+
         // get value of user name and user password
         String userName = req.getParameter(ConstAttributeNames.POST_USER_NAME);
         String userPassword = req.getParameter(ConstAttributeNames.POST_USER_PASSWORD);

@@ -20,7 +20,7 @@ public class ConstAttributeNames {
     //cookie
     public final static String JSESSIONID = "JSESSIONID";
     // put fields
-    public final static String POST_USER_NAME = "username";
+    public final static String POST_USER_NAME = "userName";
     public final static String POST_USER_PASSWORD = "password";
     public final static String POST_USER_EMAIL = "email";
 

@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <c:set scope="page" var="usersList" value="${AttributeName.USERS_LIST}"></c:set>
+    <c:set scope="page" var="usersList" value="${ConstAttributeNames.USERS_LIST}"></c:set>
     <title>All users</title>
     <style>
         .sub{

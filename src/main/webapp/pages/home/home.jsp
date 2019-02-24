@@ -5,7 +5,7 @@
 <html>
 <head>
   <c:set scope="page" var="contextPath" value="${pageContext.request.contextPath}"></c:set>
-  <c:set scope="page" var="userAttributeName" value="${AttributeName.USER}"></c:set>
+  <c:set scope="page" var="userAttributeName" value="${ConstAttributeNames.USER}"></c:set>
 </head>
 <body>
   <div style="position:absolute; width:100%; top:35%;">
