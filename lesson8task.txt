@@ -1,0 +1,22 @@
+Цель:
+    Ознакомиться с JEE Web, написать JEE Web приложение на чистом JEE, запаковать в WAR, deployment в tomcat
+Материалы:
+https://docs.oracle.com/javaee/6/tutorial/doc/bnadr.html (только раздел 3 и 15)
+JSP https://docs.oracle.com/javaee/5/tutorial/doc/bnadp.html (разделы 5-8)
+Хорошее чтиво по JSP https://stackoverflow.com/questions/1958808/java-ee-web-development-where-do-i-start-and-what-skills-do-i-need
+https://docs.gradle.org/current/userguide/getting_started.html
+https://docs.gradle.org/current/userguide/building_java_projects.html
+https://docs.gradle.org/current/userguide/war_plugin.html#war_plugin
+Задание:
+Используя gradle сгенерировать проект web приложение, которое собирается в war архив. 
+Развернуть томкат сервер. WAR архив должен деплоится в tomcat (https://tomcat.apache.org/) без ошибок.
+Реализовать 3 страницы:
+/hello-jsp - jsp  -  которое выводит <h1>Hello JSP!</h1>
+/hello-servlet  - servlet который выводит <h1>Hello Servlet!</h1>
+/hello-mvc  -  (см. ссылку внизу *) servlet обрабатывает doGet, формирует requestContext с параметрам “msg”:”Hello MVC!” (или pageContext это нужно проверить, что здесь подходит), делает forward на jsp страницу, которая печатает <h1>${msg}</h1>
+Функционал: Смоделировать пользователей и их сообщения (связь один-ко-многим). В приложении должно быть страница сообщений и страница деталей пользователя. Данные должны храниться в базе MySql или Postresql.
+[Опционально] Сделать страницу админки, вход разрешается только пользователю admin, пароль храниться в настройках приложения, проверяется в фильтре аутентификации.
+
+
+Использовать MVC, пример https://stackoverflow.com/questions/5003142/show-jdbc-resultset-in-html-in-jsp-page-using-mvc-and-dao-pattern обсудить перед имплементацией!
+    
